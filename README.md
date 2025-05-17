@@ -15,7 +15,7 @@ Builds [llama.cpp](https://github.com/ggml-org/llama.cpp) and [llama-swap](https
 ## To use:
 `podman pull ghcr.io/andrewmobbs/llama-swap-distroless:latest`
 
-The container assumes that the llama-swap config is in `/etc/llama-swap/config.yaml`. This can either be copied into the container image before use or mapped in as volumes.
+The container assumes that the [llama-swap config](https://github.com/mostlygeek/llama-swap?tab=readme-ov-file#configyaml) is in `/etc/llama-swap/config.yaml`. This can either be copied into the container image before use or mapped in as volumes.
 There is directory created intended for model storage at `/var/lib/models`. Again, this can be mapped as a volume.
 The default port is 9000
 
