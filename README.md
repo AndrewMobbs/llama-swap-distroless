@@ -1,7 +1,7 @@
 # llama-swap-distroless container
 A minimal container image, build from Google Distroless Debian, for running multiple local LLM models from a single endpoint on NVidia GPUs.
 
-This is a minimal alternative to [ghcr.io/mostlygeek/llama-swap:cuda](https://github.com/mostlygeek/llama-swap/pkgs/container/llama-swap) (which is much more general-purpose and better supported than this).
+This is an alternative to [ghcr.io/mostlygeek/llama-swap:cuda](https://github.com/mostlygeek/llama-swap/pkgs/container/llama-swap) (which is much more general-purpose and better supported than this).
 
 Builds [llama.cpp](https://github.com/ggml-org/llama.cpp) and [llama-swap](https://github.com/mostlygeek/llama-swap) from source against the latest NVidia CUDA 12 libraries. Assumes x86-64 architecture.
 
@@ -14,6 +14,8 @@ Builds [llama.cpp](https://github.com/ggml-org/llama.cpp) and [llama-swap](https
 
 ## To use:
 `podman pull ghcr.io/andrewmobbs/llama-swap-distroless:latest`
+
+As a distroless container, there is *no shell* in the container. The only binaries in the container are `llama-swap` and `llama-server` and the supporting libraries.
 
 The container assumes that the [llama-swap config](https://github.com/mostlygeek/llama-swap?tab=readme-ov-file#configyaml) is in `/etc/llama-swap/config.yaml`. This can either be copied into the container image before use or mapped in as volumes.
 The llama-cpp server binary is `/usr/bin/llama-server`.
