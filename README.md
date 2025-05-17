@@ -36,7 +36,6 @@ models:
       --model /var/lib/models/microsoft_Phi-4-reasoning-plus-Q6_K_L.gguf
       --ctx-size 16384
       --flash-attn
-      --n-gpu-layers 99
       --host 127.0.0.1
       --port 9001
       --n-gpu-layers 27
