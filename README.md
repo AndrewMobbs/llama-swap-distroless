@@ -6,7 +6,7 @@ This is an alternative to [ghcr.io/mostlygeek/llama-swap:cuda](https://github.co
 Builds [llama.cpp](https://github.com/ggml-org/llama.cpp) and [llama-swap](https://github.com/mostlygeek/llama-swap) from source against the latest NVidia CUDA 12 libraries. Assumes x86-64 architecture.
 
 ## To build:
-`podman build --tag llama-swap-distroless -f Containerfile --device nvidia.com/gpu=all --security-opt=label=disable .`
+`podman build --tag llama-swap-distroless --squash-all -f Containerfile --device nvidia.com/gpu=all --security-opt=label=disable .`
 
 ### Notes
 1. Ensure [NVidia drivers](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/index.html) are installed on the host and [CDI is configured](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html).  
