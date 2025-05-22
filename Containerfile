@@ -57,9 +57,9 @@ ENV PATH="/usr/local/cuda/bin:$GOROOT/bin:$PATH"
 ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 WORKDIR /home/build/src/llama.cpp
 # Configure with CUDA support
-RUN cmake -B build -DGGML_CUDA=ON
+RUN cmake -B build -DGGML_CUDA=ON  -DGGML_CUDA_USE_GRAPHS=ON -DGGML_CUDA_FA_ALL_QUANTS=ON
 # Build - set the environment variable for the build command
-RUN GGML_CUDA_ENABLE_UNIFIED_MEMORY=1 cmake --build build --config Release -j $(nproc)
+RUN cmake --build build --config Release -j $(nproc) 
 # Build a tarball of just the essential libraries
 RUN ldd build/bin/llama-server | cut -f 3 -d ' ' | sort -u | grep 'usr.*\.so' | xargs -I '{}' bash -c 'printf "{}\n"; [ -h {} ] && printf "%s\n" $(realpath {})' | tar chf ~/libs.tar -T -
 # Build llama-swap
@@ -100,5 +100,6 @@ EXPOSE 9000
 # Swap to a non-root user
 USER nonroot
 # Set the default command to run when the container starts
+ENV GGML_CUDA_ENABLE_UNIFIED_MEMORY=1
 ENTRYPOINT [ "/usr/bin/llama-swap" ]
 CMD ["-config","/etc/llama-swap/config.yaml","-listen","0.0.0.0:9000"]
